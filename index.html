@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogging Tracker</title>
+</head>
+<body>
+  <h1>Jogging Tracker</h1>
+
+  <input type="date" id="date">
+  <input type="number" id="distance" placeholder="Distance (km)">
+  <button onclick="saveRun()">Save Run</button>
+  <button onclick="showRuns()">Show Runs</button>
+
+  <ul id="output"></ul>
+
+  <script>
+    function saveRun() {
+      const date = document.getElementById("date").value;
+      const distance = document.getElementById("distance").value;
+      if (!date || !distance) return alert("Please enter date and distance");
+
+      // Load existing runs from localStorage
+      let runs = JSON.parse(localStorage.getItem("runs")) || [];
+
+      // Add new run
+      runs.push({ date, distance });
+
+      // Save back
+      localStorage.setItem("runs", JSON.stringify(runs));
+      alert("Run saved!");
+    }
+
+    function showRuns() {
+      const runs = JSON.parse(localStorage.getItem("runs")) || [];
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+      runs.forEach(run => {
+        const li = document.createElement("li");
+        li.textContent = `${run.date} - ${run.distance} km`;
+        output.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
