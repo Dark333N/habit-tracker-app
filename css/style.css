@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.screen {
+  display: none;
+  padding: 20px;
+}
+
+.screen.active {
+  display: block;
+}
+
+/* Bottom nav */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background: #eee;
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.tab-bar button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: none;
+  font-size: 16px;
+}
