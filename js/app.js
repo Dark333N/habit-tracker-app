@@ -1,14 +1,3 @@
-/*
-function showScreen(screenId) {
-  // Hide all screens
-  document.querySelectorAll('.screen').forEach(screen => {
-    screen.classList.remove('active');
-  });
-
-  // Show the one we clicked
-  document.getElementById(screenId).classList.add('active');
-}
-*/
 import { ICONS } from "./constants.js";
 
 function createIcons(paths) {
@@ -34,6 +23,9 @@ document.getElementById("home-btn").appendChild(createIcons(ICONS.home));
 document.getElementById("calendar-btn").appendChild(createIcons(ICONS.calendar));
 document.getElementById("stats-btn").appendChild(createIcons(ICONS.chart));
 document.getElementById("profile-btn").appendChild(createIcons(ICONS.profile));
+
+// Set home icon to active by default
+document.querySelector("#home-btn .tab-bar-icon").classList.add("active");
 
 // Navigation handling
 const buttons = document.querySelectorAll(".tab-bar button");
