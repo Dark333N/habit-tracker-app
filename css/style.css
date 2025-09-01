@@ -5,19 +5,17 @@
   --icon-secondary: rgb(100, 100, 100);
 }
 
-html {
+html, body {
   height: 100%;
+  margin: 0;
   background-color: var(--bg-primary);
 }
 
 body {
-  margin: 0;
   font-family: sans-serif;
   text-align: center;
-  height: 100vh;
   padding-top: env(safe-area-inset-top);
   color: white;
-  background-color: var(--bg-primary);
   overflow: hidden;
 }
 
