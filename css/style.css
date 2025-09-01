@@ -15,6 +15,7 @@ body {
   font-family: sans-serif;
   text-align: center;
   padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
   color: white;
   overflow: hidden;
 }
