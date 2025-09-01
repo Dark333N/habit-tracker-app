@@ -1,6 +1,6 @@
 {
-  "name": "Jogging Tracker",
-  "short_name": "JogTracker",
+  "name": "Habit Tracker",
+  "short_name": "Habits",
   "start_url": "/habit-tracker-app/",
   "display": "standalone",
   "background_color": "#ffffff",
