@@ -1,4 +1,5 @@
 import { ICONS } from "./constants.js";
+import { getHabitsForDays } from "./database.js";
 
 // Create SVG icons
 export function createIcons(paths) {
@@ -37,4 +38,34 @@ export function setActiveIcon(button) {
 
   const icon = button.querySelector(".tab-bar-icon");
   if (icon) icon.classList.add("active");
+}
+
+
+// Render the habits
+
+export async function renderHabits(days) {
+
+    const container = document.getElementById("habits-container");
+    container.innerHTML = "";
+
+    const habitsByDay = await getHabitsForDays(days);
+    for (const dayKey of days) {
+        const habits = habitsByDay[dayKey];
+
+        const daySection = document.createElement("div");
+        daySection.className = "day-section"
+
+        const title = document.createElement("div");
+        title.className = "day-title";
+        title.textContent = dayKey;
+        daySection.appendChild(title);
+
+        habits.forEach(h => {
+            const habitCard = document.createElement("div");
+            habitCard.className = "habit-card";
+            habitCard.textContent = h.name;
+            daySection.appendChild(habitCard);
+        });
+        container.appendChild(daySection);
+    }
 }
