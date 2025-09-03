@@ -7,12 +7,20 @@
   <title>Habit Tracker</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="manifest" href="manifest.json">
+
+  <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+  <script type="module" src="js/database.js"></script>
 </head>
 <body>
   <!-- Screens -->
   <div id="home-screen" class="screen active">
+    <button id="add-habit-btn" data-screen="add-habit-screen">+</button>
     <h1>Habits</h1>
-    <p>Here you’ll see your daily habits.</p>
+
+    <!-- Scrollable Habits Container -->
+    <div id="habits-container">
+
+    </div>
   </div>
 
   <div id="calendar-screen" class="screen">
@@ -28,6 +36,27 @@
   <div id="profile-screen" class="screen">
     <h1>Profile</h1>
     <p>Here you’ll see your profile.</p>
+  </div>
+
+  <div id="add-habit-screen" class="screen">
+    <button id="return-btn" data-screen="home-screen">←</button>
+    <h1>Add Habit</h1>
+
+    <form id="add-habit-form">
+      <label for="habit-name">Name:</label>
+      <input id="habit-name" type="text" name="name" placeholder="Name" required>
+      <label for="habit-date">Date:</label>
+      <input id="habit-date" type="date" name="date" required>
+      <label for="habit-type">Type:</label>
+      <input id="habit-type" type="text" name="type" placeholder="Type" required>
+      <label for="habit-minutes">Minutes (optional):</label>
+      <input id="habit-minutes" type="number" name="minutes" placeholder="Minutes">
+      <label for="habit-info">Aditional info (optional):</label>
+      <input id="habit-info" type="text" name="info" placeholder="Info">
+      <label for="habit-picture">Picture (optional):</label>
+      <input id="habit-picture" type="file" name="picture">
+      <button type="submit">Save Habit</button>
+    </form>
   </div>
 
   <!-- Bottom Navigation -->
