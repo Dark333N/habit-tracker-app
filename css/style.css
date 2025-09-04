@@ -137,7 +137,7 @@ h1 {
 
 /* Style the calendar picker icon */
 #add-habit-form input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(60%); /* makes it gray instead of black */
+  filter: none; /* makes it gray instead of black */
   opacity: 0.6;
   cursor: pointer;
 }
