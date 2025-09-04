@@ -19,6 +19,16 @@ body {
   overflow: hidden;
 }
 
+input {
+  -webkit-appearance: none; /* Remove default iOS styles */
+  -moz-appearance: none;    /* For Firefox */
+  appearance: none;
+
+  border-radius: 0;         /* Remove rounded corners */
+  background: transparent;  /* Transparent background */
+  box-shadow: none;         /* Remove inner shadow */
+}
+
 .screen {
   display: none;
   padding: 20px;
@@ -110,8 +120,6 @@ h1 {
   padding: 8px;
   font-size: 16px;
   background: transparent;
-  -webkit-appearance: none;
-  appearance: none;
   border: none;
   border-bottom: 1px solid var(--icon-primary);
   margin-bottom: 10px;
