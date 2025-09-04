@@ -111,6 +111,7 @@ h1 {
   font-size: 16px;
   background: transparent;
   -webkit-appearance: none;
+  appearance: none;
   border: none;
   border-bottom: 1px solid var(--icon-primary);
   margin-bottom: 10px;
