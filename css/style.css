@@ -19,6 +19,16 @@ body {
   overflow: hidden;
 }
 
+input {
+  -webkit-appearance: none; /* Remove default iOS styles */
+  -moz-appearance: none;    /* For Firefox */
+  appearance: none;
+
+  border-radius: 0;         /* Remove rounded corners */
+  background: transparent;  /* Transparent background */
+  box-shadow: none;         /* Remove inner shadow */
+}
+
 .screen {
   display: none;
   padding: 20px;
