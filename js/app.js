@@ -23,9 +23,15 @@ buttons.forEach(btn => {
     }
 
     // reset form
+    const form = document.getElementById("add-habit-form");
     if (screenId !== "add-habit-screen") {
-      const form = document.getElementById("add-habit-form");
       if (form) form.reset();
+    }
+    else {
+      if (form) {
+        const today = new Date().toISOString().split("T")[0];
+        document.getElementById("habit-date").value = today;
+      }
     }
   });
 });
