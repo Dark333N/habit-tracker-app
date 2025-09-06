@@ -70,13 +70,11 @@ export async function renderHabits(days) {
 
             console.log(h.picture, typeof h.picture)
 
-            if (h.picture instanceof Blob || h.picture instanceof File) {
-                const img = document.createElement("img");
-                const objectURL = URL.createObjectURL(h.picture);
-                img.src = objectURL;
-                img.onload = () => URL.revokeObjectURL(img.src); // free memory
-                img.className = "habit-picture";
-                pictureDiv.appendChild(img);
+            if (typeof h.picture === "string"){
+              const img = document.createElement("img");
+              img.src = h.picture;
+              img.className = "habit-picture";
+              pictureDiv.appendChild(img);
             } 
             else {
               const placeholder = document.createElement("span");
