@@ -1,17 +1,18 @@
 
 export const db = new Dexie("HabitsDB");
 db.version(1).stores({
-    habits: "++id,date,name,type,minutes,completed,picture"
+    habits: "++id,date,name,type,minutes,completed"
 });
 
 // helpers
 
-export async function addHabit(date, name, type, minutes=null, picture=null) {
-    await db.habits.add({ date, name, type, minutes, picture });
+export async function addHabit(date, name, type, minutes=null, info="", picture=null) {
+    await db.habits.add({ date, name, type, minutes, info, picture});
 }
 
 export async function getHabitsByDate(date) {
-  return db.habits.where("date").equals(date).toArray();
+  const habits = await db.habits.where("date").equals(date).toArray();
+  return habits;
 }
 
 export async function getHabitsForDays(days) {
