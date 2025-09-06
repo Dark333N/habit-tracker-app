@@ -52,6 +52,28 @@ function getNext7Days() {
   return next7Days;
 }
 
+// Resize/compress images and store as base64
+
+async function resizeAndCompress(file, maxSize=160, quality=0.7) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const ratio = Math.min(maxSize / img.width, maxSize / img.height);
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width * ratio;
+      canvas.height = img.height * ratio;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      // Convert to Base64
+      const base64 = canvas.toDataURL("image/jpeg", quality);
+      resolve(base64);
+    };
+    img.onerror = reject;
+    img.src = URL.createObjectURL(file);
+  });
+}
+
 // form submit
 
 document.getElementById("add-habit-form").addEventListener("submit", async e => {
@@ -63,9 +85,15 @@ document.getElementById("add-habit-form").addEventListener("submit", async e => 
   const habitType = document.getElementById("habit-type").value.trim();
   const habitMinutes = document.getElementById("habit-minutes").value || null;
   const habitInfo = document.getElementById("habit-info").value.trim() || "";
-  const habitPicture = document.getElementById("habit-picture").files[0] || null;
 
-  console.log(habitName, habitDate, habitType, habitMinutes, habitInfo, habitPicture);
+
+  let habitPicture = null;
+  const fileInput = document.getElementById("habit-picture").files[0] || null;
+
+  if (fileInput) {
+    habitPicture = await resizeAndCompress(fileInput, 160, 0.7);
+  }
+
 
   if (!habitName || !habitDate || !habitType) {
     alert("Please fill in all required fields.");
