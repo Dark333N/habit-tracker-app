@@ -54,7 +54,7 @@ function getNext7Days() {
 
 // Resize/compress images and store as base64
 
-async function resizeAndCompress(file, maxSize=160, quality=0.7) {
+async function resizeAndCompress(file, maxSize=160, quality=0.9) {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => {
@@ -91,7 +91,7 @@ document.getElementById("add-habit-form").addEventListener("submit", async e => 
   const fileInput = document.getElementById("habit-picture").files[0] || null;
 
   if (fileInput) {
-    habitPicture = await resizeAndCompress(fileInput, 160, 0.7);
+    habitPicture = await resizeAndCompress(fileInput, 160, 0.9);
   }
 
 
