@@ -63,7 +63,33 @@ export async function renderHabits(days) {
         habits.forEach(h => {
             const habitCard = document.createElement("div");
             habitCard.className = "habit-card";
-            habitCard.textContent = h.name;
+
+            // creating picture div
+            const pictureDiv = document.createElement("div");
+            pictureDiv.className = "habit-picture-div";
+
+            console.log(h.picture, typeof h.picture)
+
+            if (h.picture instanceof Blob || h.picture instanceof File) {
+                const img = document.createElement("img");
+                const objectURL = URL.createObjectURL(h.picture);
+                img.src = objectURL;
+                img.onload = () => URL.revokeObjectURL(img.src); // free memory
+                img.className = "habit-picture";
+                pictureDiv.appendChild(img);
+            } 
+            else {
+              const placeholder = document.createElement("span");
+              placeholder.textContent = h.name.charAt(0).toUpperCase();
+              pictureDiv.appendChild(placeholder);
+            }
+            habitCard.appendChild(pictureDiv);
+
+            const hName = document.createElement("span");
+            hName.className = "habit-name";
+            hName.textContent = h.name;
+            habitCard.appendChild(hName);
+
             daySection.appendChild(habitCard);
         });
         container.appendChild(daySection);
