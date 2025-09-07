@@ -1,5 +1,5 @@
 import { setupIcons, setActiveIcon, renderHabits } from "./ui.js";
-import { addHabit } from "./database.js";
+import { addHabit, setHabitCompleted } from "./database.js";
 
 // Initialize icons
 setupIcons();
@@ -54,7 +54,7 @@ function getNext7Days() {
 
 // Resize/compress images and store as base64
 
-async function resizeAndCompress(file, maxSize=160, quality=0.9) {
+async function resizeAndCompress(file, maxSize=300, quality=0.9) {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => {
@@ -91,7 +91,7 @@ document.getElementById("add-habit-form").addEventListener("submit", async e => 
   const fileInput = document.getElementById("habit-picture").files[0] || null;
 
   if (fileInput) {
-    habitPicture = await resizeAndCompress(fileInput, 160, 0.9);
+    habitPicture = await resizeAndCompress(fileInput, 300, 0.9);
   }
 
 
@@ -113,3 +113,15 @@ document.getElementById("add-habit-form").addEventListener("submit", async e => 
 });
 
 renderHabits(getNext7Days());
+
+
+// Set habit completed on click of check button
+document.getElementById("habits-container").addEventListener("click", async e => {
+  if (e.target.classList.contains("habit-check-btn")) {
+    const id = Number(e.target.dataset.id);
+    const completed = e.target.dataset.completed === "true";
+
+    await setHabitCompleted(id, !completed);
+    renderHabits(getNext7Days());
+  }
+});
