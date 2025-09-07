@@ -17,6 +17,17 @@
     <button id="add-habit-btn" data-screen="add-habit-screen">+</button>
     <h1>Habits</h1>
 
+    <div id="done-and-overdue-container">
+      <div id="overdue-container">
+        <span id="overdue-count" class="done-and-overdue">0</span>
+        <span id="overdue-text" class="done-and-overdue">Overdue</span>
+      </div>
+      <div id="done-container">
+        <span id="done-count" class="done-and-overdue">0</span>
+        <span id="done-text" class="done-and-overdue">Done</span>
+      </div>
+    </div>
+
     <!-- Scrollable Habits Container -->
     <div id="habits-container">
 
@@ -57,6 +68,26 @@
       <input id="habit-picture" type="file" accept="image/*" name="picture">
       <button type="submit">Save Habit</button>
     </form>
+  </div>
+
+  <div id="overdue-screen" class="screen">
+    <button id="overdue-return-btn" data-screen="home-screen">←</button>
+    <h1>Overdue Habits</h1>
+
+    <!-- Scrollable Overdue Habits Container -->
+    <div id="overdue-habits-container">
+
+    </div>
+  </div>
+
+  <div id="done-screen" class="screen">
+    <button id="done-return-btn" data-screen="home-screen">←</button>
+    <h1>Done Habits</h1>
+
+    <!-- Scrollable Done Habits Container -->
+    <div id="done-habits-container">
+
+    </div>
   </div>
 
   <!-- Bottom Navigation -->
