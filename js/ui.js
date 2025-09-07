@@ -1,5 +1,5 @@
 import { ICONS } from "./constants.js";
-import { getHabitsForDays } from "./database.js";
+import { getHabitsForDays, setHabitCompleted } from "./database.js";
 
 // Create SVG icons
 export function createIcons(paths) {
@@ -68,8 +68,6 @@ export async function renderHabits(days) {
             const pictureDiv = document.createElement("div");
             pictureDiv.className = "habit-picture-div";
 
-            console.log(h.picture, typeof h.picture)
-
             if (typeof h.picture === "string"){
               const img = document.createElement("img");
               img.src = h.picture;
@@ -87,6 +85,17 @@ export async function renderHabits(days) {
             hName.className = "habit-name";
             hName.textContent = h.name;
             habitCard.appendChild(hName);
+
+            const checkBtn = document.createElement("button");
+            checkBtn.className = "habit-check-btn";
+            checkBtn.dataset.id = h.id;
+            checkBtn.dataset.completed = h.completed;
+            checkBtn.innerHTML = h.completed ? "&#10003;" : ""; // checkmark
+            if (h.completed) {
+              checkBtn.classList.add("habit-completed");
+            }
+
+            habitCard.appendChild(checkBtn);
 
             daySection.appendChild(habitCard);
         });
