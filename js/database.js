@@ -12,7 +12,6 @@ export async function addHabit(date, name, type, minutes=null, completed=false, 
 
 export async function getHabitsByDate(date) {
   const habits = await db.habits.where("date").equals(date).toArray();
-    await db.delete();
   return habits;
 }
 
