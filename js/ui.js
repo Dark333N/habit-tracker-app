@@ -1,5 +1,11 @@
 import { ICONS } from "./constants.js";
-import { getHabitsForDays, setHabitCompleted } from "./database.js";
+import { getHabitsForDays, getOverdueHabits, getDoneHabits, getHabitById } from "./database.js";
+
+
+
+/*****************************************************
+                Navigation and Icons
+  ****************************************************/
 
 // Create SVG icons
 export function createIcons(paths) {
@@ -41,7 +47,9 @@ export function setActiveIcon(button) {
 }
 
 
-// Render the habits
+/*****************************************************
+                Render Habits for Next 7 Days
+  ****************************************************/
 
 export async function renderHabits(days) {
 
@@ -83,6 +91,7 @@ export async function renderHabits(days) {
 
             const hName = document.createElement("span");
             hName.className = "habit-name";
+            hName.dataset.id = h.id;
             hName.textContent = h.name;
             habitCard.appendChild(hName);
 
@@ -101,4 +110,104 @@ export async function renderHabits(days) {
         });
         container.appendChild(daySection);
     }
+}
+
+
+/*****************************************************
+            Render Overdue and Done Habits
+  ****************************************************/
+
+export async function renderOverdueAndDone(boolean) {
+
+  let smallHabitsContainer;
+  if (boolean) smallHabitsContainer = document.getElementById("done-habits-container");
+  else smallHabitsContainer = document.getElementById("overdue-habits-container");
+
+  smallHabitsContainer.innerHTML = "";
+
+  let habitsToRender;
+
+  if (boolean) {
+    habitsToRender = await getDoneHabits();
+    if (habitsToRender.length === 0) {
+      smallHabitsContainer.textContent = "No done habits this month!";
+      return;
+    }
+  } else {
+    habitsToRender = await getOverdueHabits();
+    if (habitsToRender.length === 0) {
+      smallHabitsContainer.textContent = "No overdue habits!";
+      return;
+    }
+  }
+  
+
+  // Group by date
+  const grouped = {};
+  habitsToRender.forEach(h => {
+    if (!grouped[h.date]) {
+      grouped[h.date] = [];
+    }
+    grouped[h.date].push(h);
+  });
+
+  for (const date in grouped) {
+    const dateSection = document.createElement("div");
+    dateSection.className = "day-section";
+
+    const title = document.createElement("div");
+    title.className = "day-title";
+    title.textContent = date;
+    dateSection.appendChild(title);
+
+    grouped[date].forEach(h => {
+      const habitCard = document.createElement("div");
+      habitCard.className = "habit-card-small";
+
+      const hName = document.createElement("span");
+      hName.className = "habit-name";
+      hName.dataset.id = h.id;
+      hName.textContent = h.name;
+      habitCard.appendChild(hName);
+
+      const checkBtn = document.createElement("button");
+      checkBtn.className = "habit-check-btn";
+      checkBtn.dataset.id = h.id;
+      checkBtn.dataset.completed = h.completed;
+      checkBtn.innerHTML = h.completed ? "&#10003;" : ""; // checkmark
+      if (h.completed) {
+        checkBtn.classList.add("habit-completed");
+      }
+
+      habitCard.appendChild(checkBtn);
+
+      dateSection.appendChild(habitCard);
+    });
+    smallHabitsContainer.appendChild(dateSection);
+  }
+}
+
+
+/*****************************************************
+                     Habit Modal
+  ****************************************************/
+
+const modal = document.getElementById("habit-modal");
+
+export async function openHabitModal(habitId) {
+  const habit = await getHabitById(habitId);
+
+  document.getElementById("modal-habit-name").textContent = habit.name;
+  document.getElementById("modal-habit-date").textContent = habit.date;
+  document.getElementById("modal-habit-type").textContent = habit.type;
+  document.getElementById("modal-habit-minutes").textContent = habit.minutes ? `${habit.minutes} minutes` : "No time set";
+  document.getElementById("modal-habit-info").textContent = habit.info || "No additional info";
+
+
+  document.getElementById("delete-habit-btn").dataset.id = habit.id;
+  modal.classList.remove("hidden");
+}
+
+export function closeHabitModal() {
+  modal.classList.add("hidden");
 }
