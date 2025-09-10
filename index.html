@@ -18,14 +18,14 @@
     <h1>Habits</h1>
 
     <div id="done-and-overdue-container">
-      <div id="overdue-container">
+      <button id="overdue-btn" data-screen="overdue-screen">
         <span id="overdue-count" class="done-and-overdue">0</span>
         <span id="overdue-text" class="done-and-overdue">Overdue</span>
-      </div>
-      <div id="done-container">
+      </button>
+      <button id="done-btn" data-screen="done-screen">
         <span id="done-count" class="done-and-overdue">0</span>
         <span id="done-text" class="done-and-overdue">Done</span>
-      </div>
+      </button>
     </div>
 
     <!-- Scrollable Habits Container -->
@@ -50,7 +50,7 @@
   </div>
 
   <div id="add-habit-screen" class="screen">
-    <button id="return-btn" data-screen="home-screen">←</button>
+    <button id="add-screen-return-btn" class="return-btn" data-screen="home-screen">←</button>
     <h1>Add Habit</h1>
 
     <form id="add-habit-form">
@@ -71,8 +71,8 @@
   </div>
 
   <div id="overdue-screen" class="screen">
-    <button id="overdue-return-btn" data-screen="home-screen">←</button>
-    <h1>Overdue Habits</h1>
+    <button id="overdue-return-btn" class="return-btn" data-screen="home-screen">←</button>
+    <h1>Overdue</h1>
 
     <!-- Scrollable Overdue Habits Container -->
     <div id="overdue-habits-container">
@@ -81,12 +81,25 @@
   </div>
 
   <div id="done-screen" class="screen">
-    <button id="done-return-btn" data-screen="home-screen">←</button>
-    <h1>Done Habits</h1>
+    <button id="done-return-btn" class="return-btn" data-screen="home-screen">←</button>
+    <h1>Done</h1>
 
     <!-- Scrollable Done Habits Container -->
     <div id="done-habits-container">
 
+    </div>
+  </div>
+
+  <div id="habit-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="modal-close-btn">x</button>
+      <h2 id="modal-habit-name"></h2>
+      <p>Date: <span id="modal-habit-date"></span></p>
+      <p>Type: <span id="modal-habit-type"></span></p>
+      <p>Minutes: <span id="modal-habit-minutes"></span></p>
+      <p>Info: <span id="modal-habit-info"></span></p>
+      <button id="edit-habit-btn" class="edit-btn">Edit</button>
+      <button id="delete-habit-btn" class="delete-btn">Delete</button>
     </div>
   </div>
 
