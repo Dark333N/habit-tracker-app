@@ -194,19 +194,35 @@ h1 {
   gap: 40px;
   margin-top: 40px;
 }
-#overdue-container {
+#overdue-btn {
   text-align: center;
   padding: 20px;
   border: 3px solid rgba(255, 165, 80, 1);
   border-radius: 38px;
-  width: 120px;
+  width: 170px;
+  background: none;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
 }
-#done-container {
+#done-btn {
   text-align: center;
   padding: 20px;
   border: 3px solid rgba(26, 255, 0, 1);
   border-radius: 38px;
-  width: 120px;
+  width: 170px;
+  background: none;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
 }
 
 .done-and-overdue {
@@ -234,7 +250,7 @@ h1 {
 /********************************************************
                     Add Habit Form
   ******************************************************/
-#return-btn {
+.return-btn {
   position: absolute;
   top: 30px;
   left: 30px;
@@ -287,3 +303,110 @@ h1 {
   cursor: pointer;
 }
 
+/********************************************************
+                    Overdue and Done Screens
+  ******************************************************/
+
+#overdue-habits-container, #done-habits-container {
+  margin-top: 30px;
+  max-height: 80vh;
+  overflow: auto;
+  font-size: 18px;
+}
+
+.habit-card-small {
+  position: relative;
+  height: 60px;
+  border-radius: 32px;
+  margin-bottom: 6px;
+  border: 3px solid transparent; /* creates space for gradient border */
+
+  background-image: 
+    linear-gradient(var(--bg-secondary), var(--bg-secondary)), /* solid inner fill */
+    linear-gradient(to right, var(--icon-primary), var(--gradient-purple-value));    /* gradient border */
+  
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 0;
+}
+
+/**************************************************
+                    Habit Modal
+***************************************************/
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal.hidden {
+  display: none;
+}
+.modal-content {
+  position: relative;
+  background: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 12px;
+  width: 70%;
+  color: white;
+
+  border: 3px solid transparent; /* creates space for gradient border */
+
+  background-image: 
+    linear-gradient(var(--bg-secondary), var(--bg-secondary)), /* solid inner fill */
+    linear-gradient(to right, var(--icon-primary), var(--gradient-purple-value));    /* gradient border */
+  
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.modal-content p {
+  margin: 10px 0;
+  font-size: 18px;
+  text-align: left;
+  font-weight: 500;
+}
+
+.modal-content span {
+  color: var(--icon-primary);
+}
+
+.modal-content h2 {
+  margin: -5px auto 20px auto;
+  border: white solid 3px;
+  padding: 10px 20px;
+  border-radius: 28px;
+  width: fit-content;
+}
+
+#modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--icon-primary);
+}
+
+#edit-habit-btn, #delete-habit-btn {
+  padding: 10px 20px;
+  margin: 20px 10px 10px 10px;
+  border: solid 3px var(--icon-primary);
+  border-radius: 21px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 120px;
+  background: none;
+  color: white;
+}
