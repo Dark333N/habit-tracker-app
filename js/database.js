@@ -1,7 +1,7 @@
 
 export const db = new Dexie("HabitsDB");
 db.version(1).stores({
-    habits: "++id,date,name,type,minutes,completed"
+    habits: "++id,date,name,type,minutes,completed,info,picture"
 });
 
 // helpers
@@ -30,4 +30,28 @@ export async function deleteHabit(id) {
 // Set completed status
 export async function setHabitCompleted(id, completed) {
   return db.habits.update(id, { completed });
+}
+
+// Get overdue habits
+export async function getOverdueHabits() {
+  const today = new Date().toISOString().split('T')[0];
+  return db.habits
+    .where("date")
+    .below(today)
+    .and(habit => !habit.completed)
+    .toArray();
+}
+
+// Get done habits
+export async function getDoneHabits() {
+  const today = new Date().toISOString().split('T')[0];
+  return db.habits
+    .where("date")
+    .below(today)
+    .and(habit => habit.completed)
+    .toArray();
+}
+
+export async function getHabitById(id) {
+  return db.habits.get(id);
 }
