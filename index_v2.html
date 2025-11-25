@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Habit Tracker</title>
+  <link rel="stylesheet" href="css_v2/style_v2.css">
+  <link rel="manifest" href="manifest.json">
+
+  <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+  <script type="module" src="js_v2/database_v2.js"></script>
+</head>
+<body>
+    <!-- Background Bars -->
+    <div id="background-bars">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+    </div>
+
+    <!-- Screens -->
+    <div id="home-screen" class="screen active">
+        <div id="flow-text-container">
+            <div id="flow-text">
+                <span>This is a very long sentence to test if the flow text box actually works. So lets find out.&emsp;&emsp;&nbsp;✦&emsp;&emsp;</span>
+                <span>This is a very long sentence to test if the flow text box actually works. So lets find out.&emsp;&emsp;&nbsp;✦&emsp;&emsp;</span>
+            </div>
+        </div>
+
+        <h1 id="day-counter">Day 10/90</h1>
+
+        <h4 id="motivation">Get up and beat yesterday.</h4>
+
+        <div id="done-and-skipped-btn-container">
+            <button id="todo-btn" class="main-habit-btns">To-dos (<span id="todo-count">0</span>)</button>
+            <button id="done-btn" class="main-habit-btns">Done (<span id="done-count">0</span>)</button>
+            <button id="skipped-btn" class="main-habit-btns">Skipped (<span id="skipped-count">0</span>)</button>
+        </div>
+
+        <!-- Scrollable Habits Container -->
+        <div class="main-habits-container shown" id="main-todo-habits">
+            
+        </div>
+        <div class="main-habits-container" id="main-done-habits">
+            
+        </div>
+        <div class="main-habits-container" id="main-skipped-habits">
+            
+        </div>
+    </div>
+
+    <div id="calendar-screen" class="screen">
+        <h1>Calendar</h1>
+        <p>Here you’ll see your calendar.</p>
+    </div>
+
+    <div id="stats-screen" class="screen">
+        <h1>Stats</h1>
+        <p>Here you’ll see charts & progress.</p>
+    </div>
+
+    <div id="profile-screen" class="screen">
+        <h1>Profile</h1>
+        <p>Here you’ll see your profile.</p>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="tab-bar">
+        <button data-screen="home-screen" id="home-btn"></button>
+        <button data-screen="calendar-screen" id="calendar-btn"></button>
+        <button data-screen="stats-screen" id="stats-btn"></button>
+        <button data-screen="profile-screen" id="profile-btn"></button>
+    </nav>
+
+    <script type="module"src="js_v2/app_v2.js"></script>
+</body>
+</html>
