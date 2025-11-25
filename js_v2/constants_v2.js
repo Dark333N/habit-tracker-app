@@ -27,7 +27,7 @@ export const MAIN_HABITS = [
     types: ["discipline", "productivity"],
     info: "Size the day and get ahead of everybody.",
     weekdays: ["Mo", "Tu", "We", "Th", "Fr"],
-    img_url: "habit-tracker-app/assets/images/main_habit1.png",
+    img_url: "./assets/images/main_habit1.png",
     emoji: "🌇",
     special: true
   },
@@ -45,7 +45,7 @@ export const MAIN_HABITS = [
     types: ["focus", "confidence"],
     info: "Clear your mind and increase your focus.",
     weekdays: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-    img_url: "habit-tracker-app/assets/images/main_habit2.png",
+    img_url: "./assets/images/main_habit2.png",
     emoji: "🧘",
     special: false
   },
@@ -63,7 +63,7 @@ export const MAIN_HABITS = [
     types: ["wisdom", "discipline"],
     info: "Books are food for the brain.",
     weekdays: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-    img_url: "habit-tracker-app/assets/images/main_habit3.png",
+    img_url: "./assets/images/main_habit3.png",
     emoji: "📖",
     special: false
   },
@@ -81,7 +81,7 @@ export const MAIN_HABITS = [
     types: ["wisdom", "discipline"],
     info: "Learn a new skill.",
     weekdays: ["Mo", "Tu", "We", "Th", "Fr"],
-    img_url: "habit-tracker-app/assets/images/main_habit4.png",
+    img_url: "./assets/images/main_habit4.png",
     emoji: "📚",
     special: true
   },
@@ -99,7 +99,7 @@ export const MAIN_HABITS = [
     types: ["strength", "discipline"],
     info: "Train your endurance and your mind.",
     weekdays: ["Mo", "Tu", "Fr", "Sa"],
-    img_url: "habit-tracker-app/assets/images/main_habit5.png",
+    img_url: "./assets/images/main_habit5.png",
     emoji: "🏃",
     special: false
   },
@@ -117,7 +117,7 @@ export const MAIN_HABITS = [
     types: ["wisdom", "discipline"],
     info: "Try to beat the market.",
     weekdays: ["Mo", "Tu", "We", "Th", "Fr"],
-    img_url: "habit-tracker-app/assets/images/main_habit6.png",
+    img_url: "./assets/images/main_habit6.png",
     emoji: "📈",
     special: false
   },
@@ -135,7 +135,7 @@ export const MAIN_HABITS = [
     types: ["strength", "confidence"],
     info: "Strain your body, rest your mind.",
     weekdays: ["Mo", "Tu", "Th", "Fr"],
-    img_url: "habit-tracker-app/assets/images/main_habit7.png",
+    img_url: "./assets/images/main_habit7.png",
     emoji: "🏋️‍♂️",
     special: false
   },
@@ -153,7 +153,7 @@ export const MAIN_HABITS = [
     types: ["productivity", "focus"],
     info: "Don't waste your time on distractions.",
     weekdays: ["Mo", "Tu", "We", "Th", "Fr", "Su"],
-    img_url: "habit-tracker-app/assets/images/main_habit8.png",
+    img_url: "./assets/images/main_habit8.png",
     emoji: "📱",
     special: true
   },
@@ -171,7 +171,7 @@ export const MAIN_HABITS = [
     types: ["confidence", "focus"],
     info: "Go out of the comfort zone.",
     weekdays: ["Mo", "We", "Fr", "Sa"],
-    img_url: "habit-tracker-app/assets/images/main_habit9.png",
+    img_url: "./assets/images/main_habit9.png",
     emoji: "❄️",
     special: false
   },
@@ -189,7 +189,7 @@ export const MAIN_HABITS = [
     types: ["confidence", "focus"],
     info: "Reflect on your day and visualize your goals.",
     weekdays: ["Mo", "Tu", "We", "Th", "Fr", "Su"],
-    img_url: "habit-tracker-app/assets/images/main_habit10.png",
+    img_url: "./assets/images/main_habit10.png",
     emoji: "✏️",
     special: false
   }
