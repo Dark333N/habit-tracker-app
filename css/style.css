@@ -3,12 +3,10 @@
   ******************************************************/
 
 :root {
-  --bg-primary: rgb(25, 25, 35);
+  --bg-primary: rgb(25, 25, 25);
   --bg-secondary: rgb(45, 45 , 45);
-  --icon-primary: rgb(0, 209, 255);
+  --icon-primary: 	rgb(255, 145, 77);
   --icon-secondary: rgb(100, 100, 100);
-
-  --gradient-purple-value: rgb(100, 100, 255);
 }
 
 html, body {
@@ -19,7 +17,7 @@ html, body {
 
 body {
   font-family: sans-serif;
-  text-align: center;
+  text-align: left;
   padding-top: env(safe-area-inset-top);
   color: white;
   overflow: hidden;
@@ -35,17 +33,6 @@ input {
   box-shadow: none;         /* Remove inner shadow */
 }
 
-h1 {
-  font-size: 30px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: white solid 3px;
-  padding: 10px;
-  border-radius: 28px;
-  width: 150px;
-  margin: auto;
-}
-
 .screen {
   display: none;
   padding: 20px;
@@ -56,6 +43,42 @@ h1 {
   display: block;
 }
 
+
+
+/********************************************************
+                    Background Bars
+  ******************************************************/
+#background-bars {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    height: 280px;
+    align-self: center;
+    margin-top: 180px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* ⭐ Balken unten ausrichten */
+    gap: 24px;
+}
+
+/* Grundstil der Balken */
+.bar {
+    width: 70px;
+    background: rgba(255, 140, 60, 0.30); /* ⭐ weniger hell & etwas transparent */
+    border-radius: 16px;
+
+    /* ⭐ weicher Leuchteffekt */
+    box-shadow:
+        0 0 80px rgba(255, 140, 60, 0.25);
+}
+
+/* Unterschiedliche Höhen */
+.bar1 { height: 150px; }
+.bar2 { height: 210px; }
+.bar3 { height: 280px; }
 
 /********************************************************
                     Navigation Bar
@@ -88,6 +111,7 @@ h1 {
 
 .tab-bar-icon.active {
   color: var(--icon-primary);
+  filter: drop-shadow(0 0 6px rgb(255, 106, 0));
 }
 
 
@@ -96,317 +120,249 @@ h1 {
                     Home Screen
   ******************************************************/
 
-#add-habit-btn {
-  position: fixed;
-  top: 30px;
-  right: 30px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--gradient-purple-value);
-  border: none;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-
-  display: flex;           
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-
-#habits-container {
-  margin-top: 30px;
-  max-height: 69vh;
-  overflow: auto; 
-}
-
-.day-section {
-  margin-bottom: 20px;
-}
-
-.day-title {
-  font-weight: bold;
-  margin-bottom: 8px;
-  font-size: 16px;
-  color: var(--icon-secondary);
-  text-align: left;
-}
-
-.habit-card {
+#flow-text-container {
   position: relative;
-  height: 80px;
-  border-radius: 42px;
-  margin-bottom: 6px;
-  border: 3px solid transparent; /* creates space for gradient border */
-
-  background-image: 
-    linear-gradient(var(--bg-secondary), var(--bg-secondary)), /* solid inner fill */
-    linear-gradient(to right, var(--icon-primary), var(--gradient-purple-value));    /* gradient border */
-  
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  padding: 0;
-}
-
-
-.habit-picture-div {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 100vw;
+  margin-left: -20px;
+  height: 40px;
   overflow: hidden;
-  margin-right: 10px;
-  margin-left: -3px;
-  background-color: var(--bg-primary);
-  border: 3px solid var(--icon-primary);
-  flex-shrink: 0;
-  
-  display: flex;           
-  align-items: center;
-  justify-content: center; 
-  font-size: 32px;
-  font-weight: bold;
+  white-space: nowrap;
+  margin-top: 25px;
 }
 
-.habit-picture {
-  width: 100%;          /* fill the container width */
-  height: 100%;         /* fill the container height */
-  object-fit: cover;    /* crop/scale image without distortion */
-  border-radius: 50%;   /* round edges to match circle */
-  display: block; 
+#flow-text {
+  position: absolute;
+  animation: scroll-left 10s linear infinite;
 }
 
-.habit-name {
-  font-size: 20px;
-  font-weight: semibold;
-  color: white;
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+#day-counter {
+  font-family: "Bebas Neue", Gadget, sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 40px;
+  text-align: left;
+  margin: 8px 0px 5px 25px;
+  transform: scaleX(1.2);
+  display: inline-block;
+}
+#motivation {
+  font-family: "Bebas Neue", Gadget, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: left;
+  margin-top: 15px;
+  margin-left: 7px;
+}
+
+#done-and-skipped-btn-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 77%;
   margin-left: 15px;
 }
 
-#done-and-overdue-container {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 40px;
-}
-#overdue-btn {
-  text-align: center;
-  padding: 20px;
-  border: 3px solid rgba(255, 165, 80, 1);
-  border-radius: 38px;
-  width: 170px;
-  background: none;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-
-}
-#done-btn {
-  text-align: center;
-  padding: 20px;
-  border: 3px solid rgba(26, 255, 0, 1);
-  border-radius: 38px;
-  width: 170px;
-  background: none;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-
-}
-
-.done-and-overdue {
-  font-size: 18px;
-  font-weight: semibold;
-}
-
-.habit-check-btn {
-  position: absolute;
-  right: 30px;
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
+.main-habit-btns {
+  padding: 4px 5px;
+  transform: scaleX(1.2);
+  display: inline-block;
+  background: rgb(25, 25, 25);
+  color: white; 
   border: 2px solid white;
-  border-radius: 50%;
-  background: none;
-  color: white;
+  border-radius: 4px;
+  box-shadow: 3px 3px 0 0 white;
+  font-weight: bold;
 }
 
-.habit-completed {
-  background: rgba(26, 255, 0, 1);
+.white {
+  color: rgb(25, 25, 25);
+  background: white;
 }
 
-
-/********************************************************
-                    Add Habit Form
-  ******************************************************/
-.return-btn {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: none;
-  color: var(--icon-primary);
-  font-size: 24px;
-  cursor: pointer;
-}
-
-#add-habit-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 60px;
-  text-align: left;
-}
-
-#add-habit-form input {
-  padding: 8px;
-  font-size: 16px;
-  -webkit-appearance: none;
-  border: none;
-  border-bottom: 1px solid var(--icon-primary);
-  margin-bottom: 10px;
-  color: white;
-}
-
-/* Change text color after a date is selected */
-#add-habit-form input[type="date"]:valid::-webkit-datetime-edit {
-  color: white;
-}
-
-/* Style the calendar picker icon */
-#add-habit-form input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(60%); /* makes it gray instead of black */
-  opacity: 0.6;
-  cursor: pointer;
-}
-
-#add-habit-form button {
-  background: var(--icon-primary);
-  border: none;
-  color: white;
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/********************************************************
-                    Overdue and Done Screens
-  ******************************************************/
-
-#overdue-habits-container, #done-habits-container {
+.main-habits-container {
   margin-top: 30px;
-  max-height: 80vh;
-  overflow: auto;
-  font-size: 18px;
-}
-
-.habit-card-small {
-  position: relative;
-  height: 60px;
-  border-radius: 32px;
-  margin-bottom: 6px;
-  border: 3px solid transparent; /* creates space for gradient border */
-
-  background-image: 
-    linear-gradient(var(--bg-secondary), var(--bg-secondary)), /* solid inner fill */
-    linear-gradient(to right, var(--icon-primary), var(--gradient-purple-value));    /* gradient border */
-  
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  padding: 0;
-}
-
-/**************************************************
-                    Habit Modal
-***************************************************/
-
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-.modal.hidden {
+  width: 94%;
+  margin-left: 3%;
+  max-height: 63vh;
+  overflow-y: scroll; 
   display: none;
 }
-.modal-content {
+
+.shown {
+  display: block;
+}
+
+.main-habits-container {
+  touch-action: pan-y;
+}
+
+.main-habit-card {
   position: relative;
-  background: var(--bg-secondary);
-  padding: 20px;
-  border-radius: 12px;
-  width: 70%;
-  color: white;
-
-  border: 3px solid transparent; /* creates space for gradient border */
-
-  background-image: 
-    linear-gradient(var(--bg-secondary), var(--bg-secondary)), /* solid inner fill */
-    linear-gradient(to right, var(--icon-primary), var(--gradient-purple-value));    /* gradient border */
-  
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
 }
 
-.modal-content p {
-  margin: 10px 0;
-  font-size: 18px;
-  text-align: left;
-  font-weight: 500;
+/* Content of the card*/
+.main-habit-content {
+  display: flex;
+  flex-direction: row;
+
+  position: relative;
+  width: 97%;
+  border: 2px solid white;
+  border-radius: 4px;
+  box-shadow: 4px 4px 0 0 white;
+  margin-bottom: 10px;
+  margin-left: 1px;
+  overflow: hidden;
+  z-index: 3;
+
+  transition: transform 0.2s ease, height 0.3s ease;
+  will-change: transform;
 }
 
-.modal-content span {
-  color: var(--icon-primary);
+/* Handling compressed version for content */
+.main-habit-content.compressed {
+  height: 80px;
 }
 
-.modal-content h2 {
-  margin: -5px auto 20px auto;
-  border: white solid 3px;
-  padding: 10px 20px;
-  border-radius: 28px;
-  width: fit-content;
+.main-habit-content.expanded {
+  height: 270px;
 }
 
-#modal-close-btn {
+
+
+.main-habit-picture {
+  width: 100%;
   position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--icon-primary);
+  transition: top 0.3s ease;
+  filter: grayscale(30%);
+
 }
 
-#edit-habit-btn, #delete-habit-btn {
-  padding: 10px 20px;
-  margin: 20px 10px 10px 10px;
-  border: solid 3px var(--icon-primary);
-  border-radius: 21px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 120px;
-  background: none;
+/* Handling compressed version for picture */
+.main-habit-picture.compressed {
+  top: -70px;
+}
+
+.main-habit-picture.expanded {
+  top: 0px;
+}
+
+
+
+
+.main-habit-emoji {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 44px;
+  height: 75px;
+  z-index: 4;
+
+  position: absolute;
+  left: 10px;
+}
+
+.main-habit-title {
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  top: 20px;
+  left: 70px;
+
+  font-family: "Bebas Neue", Gadget, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: left;
   color: white;
+  text-shadow: 0 2px 2px black;
+
+  width: 200px;
+  height: 20px;
+  z-index: 3;
+  padding: 10px;
+}
+
+.additional-info-wrapper {
+  position: absolute;  
+  top: 65px;
+  width: 300px;
+  height: 150px;
+  z-index: 4;
+  padding: 20px;
+
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-around;
+
+  font-family: "Bebas Neue", Gadget, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: left;
+  color: white;
+  text-shadow: 0 2px 2px black;
+}
+
+.main-habit-info {
+  width: 80%;
+  height: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.white-star {
+  color: white;
+}
+
+.gray-star {
+  color: rgb(180, 180, 180);
+}
+
+
+/* Button for swipe function*/
+.done-check-button {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+
+  width: 72px;
+  height: 70px;
+  border: 2px solid white;
+  border-radius: 4px;
+  box-shadow: 4px 4px 0 0 white;
+  padding: 4px;
+
+
+  background: var(--icon-primary);
+  filter: grayscale(20%);
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.undo-button {
+  background: rgba(3, 137, 234, 1);
+  filter: grayscale(20%);
+}
+
+.done-check-text {
+  font-size: 12px;
+}
+
+.undo-text {
+  margin-bottom: 5px;
 }
