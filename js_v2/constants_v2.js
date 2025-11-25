@@ -27,7 +27,7 @@ export const MAIN_HABITS = [
     types: ["discipline", "productivity"],
     info: "Size the day and get ahead of everybody.",
     weekdays: ["Mo", "Tu", "We", "Th", "Fr"],
-    img_url: "/habit-tracker-app/assets/images/main_habit1.png",
+    img_url: "assets/images/main_habit1.png",
     emoji: "🌇",
     special: true
   },
@@ -45,7 +45,7 @@ export const MAIN_HABITS = [
     types: ["focus", "confidence"],
     info: "Clear your mind and increase your focus.",
     weekdays: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-    img_url: "/habit-tracker-app/assets/images/main_habit2.png",
+    img_url: "assets/images/main_habit2.png",
     emoji: "🧘",
     special: false
   },
