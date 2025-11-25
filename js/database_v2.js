@@ -1,13 +1,23 @@
 
 export const db = new Dexie("HabitsDB");
 db.version(1).stores({
-    habits: "++id,date,name,type,minutes,completed,info,picture"
+    habits: "++id,date,name,types,completed,info,xp,main",
+    settings: "key"
 });
 
 // helpers
 
-export async function addHabit(date, name, type, minutes=null, completed=false, info="", picture=null) {
-    await db.habits.add({ date, name, type, minutes, completed, info, picture});
+
+export async function setStreakStart(date) {
+  return db.settings.put({ key: "streakStart", value: date });
+}
+
+export async function getStreakStart() {
+  return db.settings.get("streakStart");
+}
+
+export async function addHabit(date, name, types, completed=false, info="", xp=0, main=false) {
+    await db.habits.add({ date, name, types, completed, info, xp, main});
 }
 
 export async function getHabitsByDate(date) {
@@ -54,4 +64,8 @@ export async function getDoneHabits() {
 
 export async function getHabitById(id) {
   return db.habits.get(id);
+}
+
+export async function updateHabit(id, data) {
+  return db.habits.update(id, data);
 }
